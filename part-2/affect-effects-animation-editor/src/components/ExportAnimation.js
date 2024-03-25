@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
-import Slider from '@mui/material/Slider';
-import Box from '@mui/material/Box';
+// import Input from '@mui/material/Input';
+// import Slider from '@mui/material/Slider';
+// import Box from '@mui/material/Box';
 
 function UploadAnimation() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -10,7 +10,7 @@ function UploadAnimation() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [animationSpeed, setAnimationSpeed] = useState(1);
-  const [opacity, setOpacity] = useState(1); // State for opacity adjustment
+  const [opacity, setOpacity] = useState(1); 
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
   const frameIndex = useRef(0);
@@ -52,7 +52,7 @@ function UploadAnimation() {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        animationFrames.current.push({ src: reader.result, opacity }); // Store opacity along with image src
+        animationFrames.current.push({ src: reader.result, opacity }); 
       };
     }
   };
@@ -86,7 +86,7 @@ function UploadAnimation() {
     image.src = src;
     image.onload = () => {
       ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-      ctx.globalAlpha = frameOpacity; // Set opacity for this frame
+      ctx.globalAlpha = frameOpacity; 
       ctx.drawImage(image, 0, 0);
       frameIndex.current = (frameIndex.current + 1) % animationFrames.current.length;
       animationFrameId.current = setTimeout(renderFrame, 1000 / animationSpeed);
@@ -138,7 +138,7 @@ function UploadAnimation() {
 
   return (
     <div>
-      <Input type="file" onChange={handleFileChange} accept=".png" disabled={isUploading} />
+      {/* <Input type="file" onChange={handleFileChange} accept=".png" disabled={isUploading} />
       <Button variant="contained" onClick={uploadImage} disabled={isUploading}>
         {isUploading ? `Uploading...${uploadProgress}%` : 'Upload Animation'}
       </Button>
@@ -169,7 +169,7 @@ function UploadAnimation() {
           onChange={adjustOpacity}
           disabled={isUploading}
         />
-      </Box>
+      </Box> */}
       <Button variant="contained" onClick={exportAnimation} disabled={isUploading}>
         Export Animation
       </Button>
